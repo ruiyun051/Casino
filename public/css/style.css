@@ -1,0 +1,32 @@
+body{
+	margin: 0;
+	padding: 0;
+	background: #e64040 !important;
+	font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif !important;
+	color: #fff !important;
+}
+
+.shake-img{
+	background: #fff url(../img/shake.png) 0 0 no-repeat;
+	background-size: 260px 260px;
+	width: 260px;
+	height: 260px;
+	margin: auto;
+
+}
+.content{
+	padding: 30px 15px;
+}
+.row{
+	margin-top: 20px;
+}
+.btn-container .btn{
+	width: 80%;
+	padding: 12px;
+	font-size: 24px;
+	background: #fed700;
+}
+.link-setting{
+	color: #fff;
+}
+

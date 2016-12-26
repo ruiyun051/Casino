@@ -1,0 +1,1 @@
+module.exports.StartButton = require('./src/components/StartButton.jsx');
