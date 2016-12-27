@@ -1,14 +1,20 @@
-var React = require('react');
+import React from 'react';
+import Store from '../stores/Store';
 
-var StartButton = React.createClass({
-
-	render: function(){
+export default React.createClass({
+	getInitialState(){
+		return{
+			
+		}
+	},
+	handleChange(e){
+		window.location.assign('#/prized');
+	},
+	render(){
 		return (
 			<div className="row btn-container">
-				<button className="btn">开始摇奖</button>
+				<button className="btn" onClick={this.handleChange}>{this.props.text}</button>
 			</div>
 		)
 	}
 });
-
-module.exports = StartButton;

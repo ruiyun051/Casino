@@ -11,7 +11,7 @@ module.exports = {
   cache: true,
   entry: {
     main:  './src/index.jsx',
-    vendors: ['jquery' , 'bootstrap']
+    register: './src/register.jsx'
   },
   output: {
     path: 'public/build',
@@ -21,7 +21,7 @@ module.exports = {
     loaders: [
       {test: /\.jsx$/, loader: 'babel', exclude: /(node_modules|bower_components)/, query: { presets: ['react', 'es2015'] }},
       {test: /\.js$/, loader: 'babel', exclude: /(node_modules|bower_components)/, query: { presets: ['react', 'es2015'] }},
-      { 
+    /*  { 
         test: /\.css$/, 
         loader: "style-loader!css-loader" 
       },
@@ -48,16 +48,12 @@ module.exports = {
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
         loader: 'url?limit=10000&mimetype=image/svg+xml'
-      }
+      }*/
     ]
   },
   plugins: [
     definePlugin,
     commonsPlugin,
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery'
-    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
