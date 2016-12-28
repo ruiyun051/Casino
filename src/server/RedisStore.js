@@ -6,20 +6,20 @@ bluebird.promisifyAll(redis.Multi.prototype);
 
 var RedisStore = {
 	client: null,
-	connect(){
+	connect: function(){
 		this.client = redis.createClient(6379 , '121.40.203.56' ,{});
 		this.client.on('error' , function(err){
 			console.error(err);
 		})
 		return this.client;
 	},
-	set(key , value ,callback ){
+	set: function(key , value ,callback ){
 		return this.client.setAsync(key , JSON.stringify(value));
 	},
-	get(key){
+	get: function(key){
 		return this.client.getAsync(key);
 	},
-	quit(){
+	quit: function(){
 		if(this.client)
 			this.client.quit();
 	}

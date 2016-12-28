@@ -2,7 +2,7 @@ var RedisStore = require('./RedisStore');
 var Prize = require('../utils/Prize');
 
 var PrizeService = {
-	getStore(callback){
+	getStore: function(callback){
 		RedisStore.connect();
 		RedisStore.get('casino_store').then(function(res){
 			
@@ -16,7 +16,7 @@ var PrizeService = {
 			RedisStore.quit();
 		});
 	},
-	setStore(store , callback){
+	setStore: function(store , callback){
 		RedisStore.connect();
 		RedisStore.set('casino_store' , store).then(function(data){	
 			callback(data);
@@ -24,7 +24,7 @@ var PrizeService = {
 			RedisStore.quit();
 		});
 	},
-	addStore(member , callback){
+	addStore: function(member , callback){
 		var self = this;
 		RedisStore.connect();
 
@@ -56,7 +56,7 @@ var PrizeService = {
 	/**
      * history: {date: 2016-12-28 12:00:00 , rule: {} , members: []}
  	 */
-	getPrizedHistories(callback){
+	getPrizedHistories: function(callback){
 		RedisStore.connect();
 		RedisStore.get('casino_prized_history').then(function(data){
 			try{
@@ -67,7 +67,7 @@ var PrizeService = {
 			RedisStore.quit();
 		});
 	},
-	getLastPrizedHistory(callback){
+	getLastPrizedHistory: function(callback){
 		var histories = this.getPrizedHistories(function(histories){
 			if(histories && histories.length > 0){
 				callback(histories[histories.length - 1]);
@@ -77,7 +77,7 @@ var PrizeService = {
 			
 		});
 	},
-	setPrizedHistories(hises , callback){
+	setPrizedHistories: function(hises , callback){
 		RedisStore.connect();
 		RedisStore.set('casino_prized_history' , hises).then(function(res){
 			callback(res)
@@ -85,12 +85,12 @@ var PrizeService = {
 			RedisStore.quit();
 		});
 	},
-	addPrizedHistory(his ,callback){
+	addPrizedHistory: function(his ,callback){
 		var histories = this.getPrizedHistories();
 		histories.push(his);
 		this.setPrizedHistories(histories);
 	},
-	openPrize(filterable , callback){
+	openPrize: function(filterable , callback){
 		var history = null;
 		var client = RedisStore.connect();
 		client.multi().get('casino_store').get('casino_prized_history').execAsync().then(function(res){
