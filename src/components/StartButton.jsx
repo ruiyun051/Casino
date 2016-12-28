@@ -8,7 +8,7 @@ export default React.createClass({
 		}
 	},
 	handleChange(e){
-		window.location.assign('#/prized');
+		window.location.assign('#/prizing');
 	},
 	render(){
 		return (

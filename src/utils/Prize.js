@@ -1,18 +1,13 @@
-export default {
+var Prize = {
 	random: function(conf){
-		var members = conf.members.slice() , rules = conf.rules;
+		var members = conf.members.slice() , rule = conf.rule;
 		var prized = [];
-		for(var k in rules){
-			var rule = rules[k];
-			prized.push({
-				name: rule.name, members: []
-			})
-			for(var i = 0 ; i < rule.numbers ; i ++){
-				var j = Math.floor(Math.random() * members.length);
-				prized[prized.length - 1].members.push(members.splice(j , 1));
-			}
+		for(var i = 0 ; i < rule.numbers ; i ++){
+			var j = Math.floor(Math.random() * members.length);
+			prized = prized.concat(members.splice(j , 1));
 		}
-		console.info(prized);
 		return prized;
 	}
 };
+
+module.exports = Prize;

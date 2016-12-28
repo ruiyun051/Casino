@@ -1,12 +1,10 @@
 import assign from 'object-assign';
 import {EventEmitter} from 'events';
+import axios from 'axios';
 import Actions from '../actions/Actions';
 import Dispatcher from '../dispatcher/AppDispatcher';
 
-var _list = ['刘瑞云','张灿茂','游柏浩','吴胤旭','Mark','黄舟舟','王坤','朱嘉伟','张嘉建','杜佳鹏'];
-var _rule = {
-	name: '一等奖', numbers: 1 , prize: '100块' 
-}
+var _list = [] , _rule = {};
 
 var Store = assign({} , EventEmitter.prototype , {
 	get(){
@@ -38,6 +36,28 @@ Store.dispatchToken = Dispatcher.register(function(payload){
 				_rule = assign(_rule , opt.data);
 			}
 			Store.emit('change');
+			break;
+		case Actions.TYPES.SYNC:
+			axios.post('/api/store/set' , {
+				members: _list,
+				rule: _rule	
+			}).then(function(res){
+				Store.emit('sync' , res.data);
+			})
+			break;
+		case Actions.TYPES.INIT:
+			axios.get('/api/store/get').then(function(res){
+				var data = res.data;
+				_list = data.members;
+				_rule = data.rule;
+				Store.emit('change');
+			})
+			break;
+		case Actions.TYPES.SYNC_ADD:
+			axios.post('/api/store/add' , {name: action.value})
+			.then(function(res){
+				Store.emit('syncAdd' , res);
+			})
 			break;
 	}
 })

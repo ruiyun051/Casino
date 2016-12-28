@@ -1,14 +1,23 @@
 import React from 'react';
-import Prize from '../utils/Prize';
+import axios from 'axios';
 
 export default React.createClass({
 	getInitialState(){
 		return {
-			prized: {name: '一等奖' , prize: '500RMB', members:['刘瑞云','张灿茂']}
+			prized:{
+				members: [],
+				rule: {}
+			}
 		}
 	},
 	componentDidMount(){
-		console.info('did mount');
+		var self = this;
+		axios.get('/api/prized/get').then(function(res){
+			var prized = res.data;
+			self.setState({
+				prized: prized
+			})
+		});
 	},
 	componentWillUnmount(){
 		console.info('unmount');
@@ -16,8 +25,9 @@ export default React.createClass({
 	render(){
 		return (
 			<div className="prized-container">
-				<h2>{this.state.prized.name}</h2>
-				<h4>奖品：{this.state.prized.prize} /人</h4>
+				<h2>{this.state.prized.rule.name}</h2>
+				<h4>奖品：{this.state.prized.rule.prize} /人</h4>
+				<h4>{this.state.prized.date}</h4>
 				<ul>
 				{
 					this.state.prized.members.map(function(m){

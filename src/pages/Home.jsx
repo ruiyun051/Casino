@@ -17,6 +17,10 @@ export default React.createClass({
 				<div className="row">
 					<a href="#/setting" className="link-setting pull-right">更改奖项和人员？</a>
 				</div>
+				<div className="row clear-fix">
+					<a href="#/history" className="link-setting pull-right">历史中奖记录？</a>
+				</div>
+				
 			</div>
 		)
 	}

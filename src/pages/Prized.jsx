@@ -1,8 +1,12 @@
 import React from 'react';
+import axios from 'axios';
 import PrizedList from '../components/PrizedList.jsx'; 
 import StartButton from '../components/StartButton.jsx';
 
 export default React.createClass({
+	handleClick(){
+		window.location.assign('#/');
+	},
 	render(){
 		return(
 			<div className="container">
@@ -13,7 +17,7 @@ export default React.createClass({
 					<PrizedList/>
 				</div>
 				<div className="row text-center">
-					<StartButton text="重新摇奖"/>
+					<button className="btn" onClick={this.handleClick}>重新摇奖</button>
 				</div>
 			</div>
 		)
