@@ -98,7 +98,7 @@ var PrizeService = {
 			var members = store.members;
 			if(filterable){
 				if(!histories){
-					histories = {members:[]};
+					histories = [{members:[]}];
 				}
 				histories.map(function(his){
 					his.members.map(function(mem){
