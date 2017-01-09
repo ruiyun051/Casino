@@ -7,7 +7,7 @@ bluebird.promisifyAll(redis.Multi.prototype);
 var RedisStore = {
 	client: null,
 	connect: function(){
-		this.client = redis.createClient(6379 , '121.40.203.56' ,{});
+		this.client = redis.createClient(6379 , '121.40.203.56' ,{auth_pass: 'redis123456'});
 		this.client.on('error' , function(err){
 			console.error(err);
 		})
